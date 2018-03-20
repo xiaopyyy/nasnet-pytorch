@@ -17,4 +17,8 @@ You can evaluate the models by running `imagenet_eval.py`, e.g. evaluate the NAS
 python imagenet_eval.py --nas-type mobile --resume /path/to/modelfile --gpus 0 --data /path/to/imagenet_root_dir
 ```
 
-The ported model file are provided: [NASNet-A_Mobile_224, NASNet-A_large_331](https://www.dropbox.com/sh/ng93kp7f7ypat73/AABUQhImioJ2saQ3N-qWzrJga?dl=0).
+The ported model files are provided: [NASNet-A_Mobile_224, NASNet-A_large_331](https://www.dropbox.com/sh/ng93kp7f7ypat73/AABUQhImioJ2saQ3N-qWzrJga?dl=0).
+
+Future work:  
+- add drop path for training  
+-  more nasnet model settings
