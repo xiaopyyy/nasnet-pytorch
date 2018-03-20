@@ -1,6 +1,6 @@
 ## A neat pytorch implementation of NASNet
 
-The performance of the ported models on ImageNet:
+The performance of the ported models on ImageNet (Accuracy):
 
 | Model Checkpoint    | Million Parameters | Val Top-1 | Val Top-5 |
 | ------------------- | ------------------ | --------- | --------- |
