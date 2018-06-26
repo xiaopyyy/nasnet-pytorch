@@ -7,7 +7,7 @@ The performance of the ported models on ImageNet (Accuracy):
 | NASNet-A_Mobile_224 | 5.3                | 70.2      | 89.4      |
 | NASNet-A_large_331  | 88.9               | 82.3      | 96.0      |
 
-The differences may come from 1) the slightly different pooling padding methods between tensorflow and pytorch 2) data preprocessing.
+The differences may come from the slightly different spatial padding methods between tensorflow and pytorch.
 
 The porting process is done by `tensorflow_dump.py` and `pytorch_load.py`, modified from [Cadene's project](https://github.com/Cadene/tensorflow-model-zoo.torch/tree/master/nasnet).
 
