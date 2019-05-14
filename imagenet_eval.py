@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 import argparse
 from nasnet import NASNetALarge, NASNetAMobile, ImageNet
@@ -66,13 +65,13 @@ timer = time.time()
 for batch_idx, (data, target) in enumerate(dataloader):
     if len(args.gpus) > 0:
         data, target = data.cuda(), target.cuda()
-    data, target = Variable(data, volatile=True), Variable(target, volatile=True)
-    output = model(data)[0]
-    loss += criterion(output, target).data[0] * len(data)
+    with torch.no_grad():
+        output = model(data)[0]
+    loss += criterion(output, target).data.item() * len(data)
     _, predictions = output.data.topk(5, 1, True, True)
     topk_correct = predictions.eq(target.data.contiguous().view(len(data), 1).expand_as(predictions)).cpu()
-    top1 += len(data) - topk_correct.narrow(1, 0, 1).sum()
-    top5 += len(data) - topk_correct.sum()
+    top1 += len(data) - topk_correct.narrow(1, 0, 1).sum().item()
+    top5 += len(data) - topk_correct.sum().item()
     if (batch_idx + 1) % 10 == 0:
         processed_data = len(data) * (batch_idx + 1)
         print('Test set[{}/{}]: Top1: {:.2f}%, Top5: {:.2f}%, Average loss: {:.4f}, Average time cost: {:.3f} s'.format(
